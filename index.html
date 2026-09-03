@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☀️ 당일치기 캠핑 준비물</title>
+<title>🏕️ 1박 캠핑 준비물</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo',sans-serif;background:#f5f5f3;min-height:100vh;padding:16px;}
@@ -27,9 +27,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Ne
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
 .tab{padding:6px 14px;border-radius:99px;border:1px solid #ddd;font-size:13px;font-weight:500;cursor:pointer;background:#fff;color:#888;transition:all .15s;}
 .tab.active-전체{background:#444441;color:#fff;border-color:#444441;}
-.tab.active-보라{background:#534AB7;color:#fff;border-color:#534AB7;}
-.tab.active-승주{background:#0F6E56;color:#fff;border-color:#0F6E56;}
-.tab.active-미정{background:#993C1D;color:#fff;border-color:#993C1D;}
+.tab.active-은영{background:#534AB7;color:#fff;border-color:#534AB7;}
+.tab.active-미정{background:#0F6E56;color:#fff;border-color:#0F6E56;}
 .prog-bg{height:6px;background:#eee;border-radius:99px;margin-bottom:5px;}
 .prog-fill{height:6px;border-radius:99px;transition:width .4s;}
 .stat-row{display:flex;gap:14px;flex-wrap:wrap;}
@@ -68,12 +67,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Ne
 .assign-col{display:flex;flex-direction:column;gap:3px;padding:8px 12px 8px 0;flex-shrink:0;}
 .person-btn{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1.5px solid #e0e0e0;cursor:pointer;font-size:12px;font-weight:500;background:#fff;color:#ccc;transition:all .15s;font-family:inherit;}
 .person-btn .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-.person-btn.sel-보라{background:#EEEDFE;color:#3C3489;border-color:#534AB7;}
-.person-btn.sel-승주{background:#E1F5EE;color:#085041;border-color:#0F6E56;}
-.person-btn.sel-미정{background:#FAECE7;color:#993C1D;border-color:#993C1D;}
-.person-btn.done-보라{background:#534AB7;color:#fff;border-color:#534AB7;}
-.person-btn.done-승주{background:#0F6E56;color:#fff;border-color:#0F6E56;}
-.person-btn.done-미정{background:#993C1D;color:#fff;border-color:#993C1D;}
+.person-btn.sel-은영{background:#EEEDFE;color:#3C3489;border-color:#534AB7;}
+.person-btn.sel-미정{background:#E1F5EE;color:#085041;border-color:#0F6E56;}
+.person-btn.done-은영{background:#534AB7;color:#fff;border-color:#534AB7;}
+.person-btn.done-미정{background:#0F6E56;color:#fff;border-color:#0F6E56;}
 
 /* ── 로딩 ── */
 #loading{text-align:center;padding:40px;color:#aaa;font-size:14px;}
@@ -93,19 +90,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Ne
 
   <div class="header">
     <div class="header-top">
-      <span class="title">☀️ 당일치기 캠핑 준비물</span>
+      <span class="title">🏕️ 1박 캠핑 준비물 · 어린이 4 + 어른 4</span>
       <button class="reset-btn" onclick="resetAll()">↺ 초기화</button>
     </div>
     <div class="legend">
-      <div class="leg"><div class="leg-dot" style="background:#534AB7"></div>보라</div>
-      <div class="leg"><div class="leg-dot" style="background:#0F6E56"></div>승주</div>
-      <div class="leg"><div class="leg-dot" style="background:#993C1D"></div>미정</div>
+      <div class="leg"><div class="leg-dot" style="background:#534AB7"></div>은영</div>
+      <div class="leg"><div class="leg-dot" style="background:#0F6E56"></div>미정</div>
       <span class="leg-hint">이름 1번 탭 = 담당 &nbsp;·&nbsp; 2번 탭 = ✓챙김완료 &nbsp;·&nbsp; 3번 탭 = 취소</span>
     </div>
     <div class="tabs">
       <div class="tab active-전체" data-who="전체" onclick="setWho('전체')">🗂 전체</div>
-      <div class="tab" data-who="보라" onclick="setWho('보라')">보라</div>
-      <div class="tab" data-who="승주" onclick="setWho('승주')">승주</div>
+      <div class="tab" data-who="은영" onclick="setWho('은영')">은영</div>
       <div class="tab" data-who="미정" onclick="setWho('미정')">미정</div>
     </div>
     <div class="prog-bg"><div class="prog-fill" id="bar" style="width:0%;background:#444441"></div></div>
@@ -124,79 +119,81 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Ne
 /* ════════════════════════════════
    데이터 정의
 ════════════════════════════════ */
-const PEOPLE=["보라","승주","미정"];
-const COLORS={보라:"#534AB7",승주:"#0F6E56",미정:"#993C1D",전체:"#444441"};
+const PEOPLE=["은영","미정"];
+const COLORS={은영:"#534AB7",미정:"#0F6E56",전체:"#444441"};
 
 const DATA=[
+  {id:"sleep",icon:"⛺",title:"텐트 / 잠자리",items:[
+    {t:"8인 취침 가능한 텐트",must:true},
+    {t:"그라운드시트",must:true},
+    {t:"팩 · 여분 팩 · 팩망치",must:true},
+    {t:"타프 / 쉘터"},
+    {t:"매트 / 에어매트",must:true},
+    {t:"에어펌프"},
+    {t:"침낭 또는 이불 8명분",must:true},
+    {t:"베개 8개",must:true},
+    {t:"어린이 담요 2~3장",kids:true},
+    {t:"어린이 애착이불 / 인형",kids:true},
+  ]},
+  {id:"living",icon:"💡",title:"생활 / 전기",items:[
+    {t:"캠핑의자 8개 (어린이용 포함)",must:true},
+    {t:"테이블 2개 (식사용·조리용)",must:true},
+    {t:"랜턴 2~3개",must:true},
+    {t:"손전등 / 헤드랜턴"},
+    {t:"보조배터리 & 충전선",must:true},
+    {t:"릴선 & 멀티탭 (전기 사이트)"},
+    {t:"휴지 & 물티슈 & 키친타월",must:true},
+    {t:"종량제봉투 & 비닐봉투 & 지퍼백",must:true},
+  ]},
   {id:"food",icon:"🍳",title:"먹거리 / 취사",items:[
-    {t:"버너 & 가스",must:true},
-    {t:"코펠 / 냄비",must:true},
-    {t:"일회용 식기 (그릇·컵·수저·젓가락)",must:true},
-    {t:"일회용 비닐장갑"},
-    {t:"식재료 & 양념",must:true},
-    {t:"간식 & 과일",must:true},
-    {t:"물통 & 식수",must:true},
-    {t:"쿨러 + 얼음"},
-    {t:"키친타월",must:true},
-    {t:"지퍼백 & 비닐봉지"},
+    {t:"버너 & 부탄가스 여분",must:true},
+    {t:"불판 / 그리들",must:true},
+    {t:"냄비 1개",must:true},
+    {t:"집게 2개 & 가위 2개",must:true},
+    {t:"칼 & 도마",must:true},
+    {t:"접시·그릇·컵 8명분",must:true},
+    {t:"수저·젓가락·어린이 식기",must:true},
+    {t:"아이스박스 & 아이스팩",must:true},
+    {t:"생수 & 음료 & 커피",must:true},
+    {t:"주방세제 & 수세미",must:true},
+    {t:"호일 & 일회용 장갑 & 소스류"},
+    {t:"저녁: 고기·소시지·햇반·김·어린이 반찬",must:true},
+    {t:"야식: 라면 & 간식"},
+    {t:"아침: 빵·계란·누룽지",must:true},
   ]},
-  {id:"shade",icon:"⛺",title:"쉬는 공간",items:[
-    {t:"그늘막 / 파라솔",must:true},
-    {t:"그늘막 펙 & 폴대",must:true},
-    {t:"캠핑 의자",must:true},
-    {t:"캠핑 테이블",must:true},
-    {t:"돗자리 / 피크닉 매트",must:true},
+  {id:"kids",icon:"🧒",title:"어린이 4명 (4~6세)",items:[
+    {t:"여벌옷 1인당 2벌 이상",must:true,personal:true,kids:true},
+    {t:"잠옷 & 밤 보온옷",must:true,personal:true,kids:true},
+    {t:"양말 & 속옷 여분",must:true,personal:true,kids:true},
+    {t:"어린이 칫솔 & 치약 & 로션",personal:true,kids:true},
+    {t:"복용약 & 해열제 & 체온계",must:true,kids:true},
+    {t:"어린이 선크림 & 모기기피제",must:true,kids:true},
+    {t:"어린이 물병 & 주스 & 우유",must:true,kids:true},
+    {t:"어린이 간식 넉넉하게",must:true,kids:true},
+    {t:"비눗방울 & 공 & 카드게임 & 색칠놀이",kids:true},
+    {t:"이름표 / 연락처 팔찌",kids:true},
   ]},
-  {id:"swim",icon:"🏊",title:"수영장 놀이",items:[
-    {t:"수영복",must:true,personal:true},
-    {t:"래쉬가드",must:true,personal:true},
-    {t:"수경",personal:true},
-    {t:"수영 튜브 / 부기보드"},
-    {t:"물총"},
-    {t:"아쿠아슈즈",personal:true},
-    {t:"방수 파우치"},
-    {t:"여분 속옷 & 옷",must:true,personal:true},
-    {t:"수건 (대형)",must:true,personal:true},
-  ]},
-  {id:"sand",icon:"🏖️",title:"모래놀이",items:[
-    {t:"모래놀이 세트 (삽·틀·양동이)",must:true,kids:true},
-    {t:"모래놀이용 구형 옷"},
-    {t:"물 뿌리개",kids:true},
-    {t:"모래 방지 매트"},
-  ]},
-  {id:"kids",icon:"🚀",title:"아이 놀이 용품",items:[
-    {t:"비누방울 (대용량 + 도구)",must:true,kids:true},
-    {t:"풍선 & 펌프",kids:true},
-    {t:"물풍선 세트",kids:true},
-    {t:"배드민턴 세트",kids:true},
-    {t:"공 (축구공 / 배구공)",kids:true},
-    {t:"줄넘기",kids:true},
-    {t:"스프링클러 장난감",kids:true},
-    {t:"보드게임 (그늘용)"},
-    {t:"색연필 & 스케치북"},
-  ]},
-  {id:"personal",icon:"🧴",title:"개인 필수품 (각자)",items:[
-    {t:"자외선 차단제",must:true,personal:true},
-    {t:"선글라스",personal:true},
-    {t:"모자",must:true,personal:true},
-    {t:"개인 상비약",personal:true},
-    {t:"핸드폰 & 보조 배터리",must:true,personal:true},
+  {id:"personal",icon:"🧴",title:"옷 / 세면 / 개인용품",items:[
+    {t:"어른 여벌옷 & 잠옷 & 겉옷",must:true,personal:true},
+    {t:"세면도구 & 수건 & 슬리퍼",must:true,personal:true},
+    {t:"모자 & 선크림",must:true,personal:true},
+    {t:"핸드폰 & 보조배터리",must:true,personal:true},
     {t:"현금 & 카드",must:true,personal:true},
-    {t:"물티슈",must:true,personal:true},
-    {t:"쓰레기봉투",must:true,personal:true},
+    {t:"평소 먹는 약",personal:true},
+    {t:"우산 & 우비 (비 예보 시)"},
   ]},
   {id:"safety",icon:"🩹",title:"안전 / 응급",items:[
-    {t:"구급약 & 밴드",must:true},
-    {t:"모기 기피제",must:true},
-    {t:"모기 패치",must:true},
-    {t:"상처 소독약",must:true},
+    {t:"구급상자 & 밴드 & 소독약",must:true},
+    {t:"모기기피제 & 모기향 & 전기모기채",must:true},
+    {t:"손소독제",must:true},
     {t:"아이스팩"},
   ]},
-  {id:"etc",icon:"🔧",title:"기타",items:[
-    {t:"라이터 & 성냥",must:true},
-    {t:"카메라 / 방수 케이스"},
-    {t:"선풍기 (휴대용)"},
-    {t:"덕트 테이프"},
+  {id:"fire",icon:"🔥",title:"불멍 (선택)",items:[
+    {t:"화로대 & 방염매트"},
+    {t:"장작 & 착화제"},
+    {t:"토치 & 라이터"},
+    {t:"내열장갑 & 불멍 집게"},
+    {t:"마시멜로"},
   ]},
 ];
 
@@ -221,9 +218,10 @@ function saveGasUrl(){
 let state={};
 let who="전체";
 let saveTimer=null;
+let dirtyChanges={};
 
 function ikey(catId,t){return catId+"||"+t;}
-function getP(k){return(state[k]&&state[k].persons)||{보라:0,승주:0,미정:0};}
+function getP(k){return(state[k]&&state[k].persons)||{은영:0,미정:0};}
 function anyAssigned(k){return PEOPLE.some(n=>getP(k)[n]>=1);}
 function allDone(k){const p=getP(k);const a=PEOPLE.filter(n=>p[n]>=1);return a.length>0&&a.every(n=>p[n]===2);}
 
@@ -256,15 +254,36 @@ async function loadFromSheet(){
   }
 }
 
-async function saveToSheet(){
+async function saveToSheet(forceReplace=false){
   if(!GAS_URL) return;
   setSyncStatus("💾 저장 중...");
   try{
+    if(!forceReplace){
+      const pending=JSON.parse(JSON.stringify(dirtyChanges));
+      const latestRes=await fetch(GAS_URL+"?action=get&_="+Date.now());
+      const latestJson=await latestRes.json();
+      const merged=latestJson.data||{};
+      Object.keys(pending).forEach(k=>{
+        if(!merged[k]) merged[k]={persons:{은영:0,미정:0}};
+        if(!merged[k].persons) merged[k].persons={은영:0,미정:0};
+        Object.keys(pending[k]).forEach(person=>{
+          merged[k].persons[person]=pending[k][person];
+        });
+      });
+      state=merged;
+      Object.keys(pending).forEach(k=>{
+        Object.keys(pending[k]).forEach(person=>{
+          if(dirtyChanges[k]&&dirtyChanges[k][person]===pending[k][person]) delete dirtyChanges[k][person];
+        });
+        if(dirtyChanges[k]&&Object.keys(dirtyChanges[k]).length===0) delete dirtyChanges[k];
+      });
+    }
     await fetch(GAS_URL,{
       method:"POST",
       body:JSON.stringify({action:"set",data:state}),
     });
     setSyncStatus("✓ "+timeStr()+" 저장됨");
+    render();
   }catch(e){
     setSyncStatus("❌ 저장 실패");
   }
@@ -292,9 +311,11 @@ function setWho(w){
 
 function cyclePerson(catId,t,person){
   const k=ikey(catId,t);
-  if(!state[k]) state[k]={persons:{보라:0,승주:0,미정:0}};
-  if(!state[k].persons) state[k].persons={보라:0,승주:0,미정:0};
+  if(!state[k]) state[k]={persons:{은영:0,미정:0}};
+  if(!state[k].persons) state[k].persons={은영:0,미정:0};
   state[k].persons[person]=((state[k].persons[person]||0)+1)%3;
+  if(!dirtyChanges[k]) dirtyChanges[k]={};
+  dirtyChanges[k][person]=state[k].persons[person];
   render();
   clearTimeout(saveTimer);
   saveTimer=setTimeout(saveToSheet,800);
@@ -303,8 +324,9 @@ function cyclePerson(catId,t,person){
 function resetAll(){
   if(!confirm("초기화하면 모든 담당 및 체크가 사라집니다. 계속할까요?"))return;
   state={};
+  dirtyChanges={};
   render();
-  saveToSheet();
+  saveToSheet(true);
 }
 
 /* ════════════════════════════════
@@ -314,7 +336,7 @@ function render(){
   const cats=document.getElementById("cats");
   cats.innerHTML="";
   let total=0,totalDone=0;
-  const pp={보라:{t:0,d:0},승주:{t:0,d:0},미정:{t:0,d:0}};
+  const pp={은영:{t:0,d:0},미정:{t:0,d:0}};
 
   DATA.forEach(cat=>{
     const filteredItems=cat.items.filter(item=>{
